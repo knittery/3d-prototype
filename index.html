@@ -37,13 +37,13 @@
 
       var camera, scene, renderer, objects;
       var particleLight, pointLight;
-      var dae;
+      var dae, modelJson;
 
       var clock = new THREE.Clock();
       var morphs = [];
 
       // Collada model
-
+/*
       var loader = new THREE.ColladaLoader();
       loader.options.convertUpAxis = true;
       loader.load( 'simple_case.dae', function ( collada ) {
@@ -69,6 +69,20 @@
         animate();
 
       } );
+*/
+
+      var jsonloader = new THREE.JSONLoader();
+        jsonloader.load( 'simple_case.json', function ( geometry, materials ) {
+          // var texture = THREE.ImageUtils.loadTexture( "knitting-texture.png" );
+          // texture.wrapT = texture.wrapS = THREE.ClampToEdgeWrapping;
+          // texture.minFilter = THREE.NearestFilter;
+          // texture.repeat.set( 2, 2 );
+          // var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
+          var material = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+          modelJson = new THREE.Mesh(geometry, material);
+          init();
+          animate();
+        } );
 
       function init() {
 
@@ -83,7 +97,9 @@
 
         // Add the COLLADA
 
-        scene.add( dae );
+        //scene.add( dae );
+
+        scene.add( modelJson );
 
         // Lights
 
