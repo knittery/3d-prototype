@@ -72,14 +72,8 @@
 */
 
       var jsonloader = new THREE.JSONLoader();
-        jsonloader.load( 'simple_case.json', function ( geometry, materials ) {
-          // var texture = THREE.ImageUtils.loadTexture( "knitting-texture.png" );
-          // texture.wrapT = texture.wrapS = THREE.ClampToEdgeWrapping;
-          // texture.minFilter = THREE.NearestFilter;
-          // texture.repeat.set( 2, 2 );
-          // var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
-          var material = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
-          modelJson = new THREE.Mesh(geometry, material);
+        jsonloader.load( 'simple_case_with_texture.json', function ( geometry, materials ) {
+          modelJson = new THREE.Mesh(geometry, materials[0]);
           init();
           animate();
         } );
